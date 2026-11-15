@@ -1,15 +1,15 @@
 :root {
-  --bg-color: #0b1120;
-  --card-bg: #1e293b;
-  --card-border: #334155;
-  --primary: #a78bfa;
-  --primary-hover: #8b5cf6;
-  --text-main: #f1f5f9;
-  --text-muted: #94a3b8;
-  --correct: #22c55e;
-  --correct-bg: rgba(34, 197, 94, 0.15);
-  --wrong: #ef4444;
-  --wrong-bg: rgba(239, 68, 68, 0.15);
+  --bg-color: #f0f9ff;
+  --card-bg: #ffffff;
+  --card-border: #cbd5e1;
+  --primary: #0284c7;
+  --primary-hover: #0369a1;
+  --text-main: #0f172a;
+  --text-muted: #475569;
+  --correct: #16a34a;
+  --correct-bg: #dcfce7;
+  --wrong: #dc2626;
+  --wrong-bg: #fee2e2;
 }
 
 * {
@@ -21,7 +21,7 @@
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Hiragino Sans", sans-serif;
   background-color: var(--bg-color);
-  background-image: radial-gradient(circle at top right, #312e81 0%, transparent 45%);
+  background-image: linear-gradient(135deg, #e0f2fe 0%, #f8fafc 50%, #eef2ff 100%);
   color: var(--text-main);
   min-height: 100vh;
   display: flex;
@@ -43,9 +43,9 @@ body {
 
 .badge {
   display: inline-block;
-  background: rgba(167, 139, 250, 0.15);
-  color: var(--primary);
-  border: 1px solid rgba(167, 139, 250, 0.4);
+  background: #e0f2fe;
+  color: #0369a1;
+  border: 1px solid #bae6fd;
   font-size: 0.75rem;
   font-weight: 700;
   padding: 4px 12px;
@@ -56,6 +56,7 @@ body {
 .app-header h1 {
   font-size: 1.85rem;
   letter-spacing: 0.04em;
+  color: #0f172a;
 }
 
 .app-header p {
@@ -68,7 +69,7 @@ body {
   border: 1px solid var(--card-border);
   border-radius: 16px;
   padding: 28px;
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 10px 28px rgba(15, 23, 42, 0.08);
 }
 
 .hidden {
@@ -79,6 +80,7 @@ body {
 #start-screen h2 {
   font-size: 1.25rem;
   margin-bottom: 4px;
+  color: #0f172a;
 }
 
 .desc {
@@ -116,7 +118,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  background: rgba(15, 23, 42, 0.6);
+  background: #f8fafc;
   border: 1px solid var(--card-border);
   border-radius: 12px;
   padding: 15px 18px;
@@ -132,18 +134,29 @@ body {
 
 .mode-btn:hover:not(:disabled) {
   border-color: var(--primary);
-  background: rgba(167, 139, 250, 0.12);
+  background: #f0f9ff;
+  box-shadow: 0 4px 12px rgba(2, 132, 199, 0.12);
   transform: translateY(-2px);
 }
 
 .mode-btn:disabled {
-  opacity: 0.45;
+  opacity: 0.5;
   cursor: not-allowed;
 }
 
 .highlight-btn {
-  border-color: rgba(167, 139, 250, 0.5);
-  background: rgba(167, 139, 250, 0.08);
+  border-color: #7dd3fc;
+  background: #f0f9ff;
+}
+
+.weak-btn {
+  border-color: #fcd34d;
+  background: #fffbeb;
+}
+
+.weak-btn:hover:not(:disabled) {
+  border-color: #f59e0b;
+  background: #fef3c7;
 }
 
 .mode-title {
@@ -154,7 +167,7 @@ body {
 }
 
 .weak-btn .mode-title {
-  color: #fbbf24;
+  color: #d97706;
 }
 
 .mode-sub {
@@ -170,9 +183,11 @@ body {
 }
 
 code {
-  background: rgba(255, 255, 255, 0.1);
+  background: #e2e8f0;
+  color: #0f172a;
   padding: 2px 6px;
   border-radius: 4px;
+  font-weight: 600;
 }
 
 /* クイズ画面 */
@@ -185,8 +200,8 @@ code {
 }
 
 .tag {
-  background: #6d28d9;
-  color: #fff;
+  background: var(--primary);
+  color: #ffffff;
   font-size: 0.78rem;
   font-weight: 700;
   padding: 3px 10px;
@@ -202,8 +217,8 @@ code {
 
 .progress-bar-bg {
   width: 100%;
-  height: 6px;
-  background: #0f172a;
+  height: 8px;
+  background: #e2e8f0;
   border-radius: 999px;
   overflow: hidden;
   margin-bottom: 22px;
@@ -221,6 +236,7 @@ code {
   font-weight: 600;
   margin-bottom: 20px;
   white-space: pre-line;
+  color: #0f172a;
 }
 
 .choices-container {
@@ -233,7 +249,7 @@ code {
   align-items: flex-start;
   gap: 12px;
   width: 100%;
-  background: rgba(15, 23, 42, 0.7);
+  background: #f8fafc;
   border: 1px solid var(--card-border);
   border-radius: 10px;
   padding: 13px 15px;
@@ -246,7 +262,7 @@ code {
 
 .choice-btn:hover:not(:disabled) {
   border-color: var(--primary);
-  background: rgba(167, 139, 250, 0.08);
+  background: #f0f9ff;
 }
 
 .choice-num {
@@ -256,36 +272,38 @@ code {
   min-width: 26px;
   height: 26px;
   border-radius: 6px;
-  background: rgba(255, 255, 255, 0.1);
+  background: #e2e8f0;
+  color: #334155;
   font-size: 0.85rem;
   font-weight: 700;
 }
 
 .choice-btn.correct {
-  border-color: var(--correct);
+  border-color: #22c55e;
   background: var(--correct-bg);
 }
 
 .choice-btn.correct .choice-num {
   background: var(--correct);
-  color: #052e16;
+  color: #ffffff;
 }
 
 .choice-btn.wrong {
-  border-color: var(--wrong);
+  border-color: #ef4444;
   background: var(--wrong-bg);
 }
 
 .choice-btn.wrong .choice-num {
   background: var(--wrong);
-  color: #fff;
+  color: #ffffff;
 }
 
 /* 解説ボックス */
 .explanation-box {
   margin-top: 22px;
   padding: 18px;
-  background: rgba(15, 23, 42, 0.85);
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
   border-left: 4px solid var(--primary);
   border-radius: 8px;
 }
@@ -306,7 +324,7 @@ code {
 
 .explanation-text {
   font-size: 0.9rem;
-  color: #cbd5e1;
+  color: #334155;
   margin-bottom: 16px;
 }
 
@@ -323,22 +341,21 @@ code {
 
 .primary-btn {
   background: var(--primary);
-  color: #0f172a;
+  color: #ffffff;
 }
 
 .primary-btn:hover {
   background: var(--primary-hover);
-  color: #fff;
 }
 
 .secondary-btn {
-  background: rgba(255, 255, 255, 0.1);
-  color: var(--text-main);
+  background: #e2e8f0;
+  color: #1e293b;
   margin-top: 10px;
 }
 
 .secondary-btn:hover {
-  background: rgba(255, 255, 255, 0.18);
+  background: #cbd5e1;
 }
 
 /* 結果画面 */
@@ -356,13 +373,14 @@ code {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: rgba(167, 139, 250, 0.08);
+  background: #f0f9ff;
 }
 
 #score-percent {
   font-size: 2.4rem;
   font-weight: 800;
   line-height: 1.1;
+  color: #0f172a;
 }
 
 #score-detail {
@@ -382,13 +400,13 @@ code {
 .pass-judge.passed {
   background: var(--correct-bg);
   color: var(--correct);
-  border: 1px solid var(--correct);
+  border: 1px solid #86efac;
 }
 
 .pass-judge.failed {
   background: var(--wrong-bg);
   color: var(--wrong);
-  border: 1px solid var(--wrong);
+  border: 1px solid #fca5a5;
 }
 
 .result-comment {
