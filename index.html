@@ -3,15 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>一陸特 法規マスタードリル | 第一級陸上特殊無線技士 対策</title>
+  <title>一陸特 法規マスタードリル | 全96問収録</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div class="container">
     <header class="app-header">
-      <div class="badge">国家資格 対策Webアプリ</div>
+      <div class="badge">国家資格 対策Webアプリ（過去問 全96問収録）</div>
       <h1>一陸特 法規マスタードリル</h1>
-      <p>第一級陸上特殊無線技士「法規」4肢択一演習</p>
+      <p>第一級陸上特殊無線技士「法規」過去問演習（R07.06〜R08.06）</p>
     </header>
 
     <!-- スタート画面（モード選択） -->
@@ -20,17 +20,167 @@
       <p class="desc">本試験の法規と同じ合格基準（12問中8問以上正解）で判定します。</p>
 
       <div class="mode-grid">
-        <button class="mode-btn" data-mode="exam">
-          <span class="mode-title">本試験形式（全12問）</span>
-          <span class="mode-sub">法規の全頻出分野から12問出題（合格ライン：8問以上）</span>
+        <button class="mode-btn highlight-btn" data-mode="random12">
+          <span class="mode-title">🎯 ランダム模擬試験（全96問から12問）</span>
+          <span class="mode-sub">過去4回分（全96問）からランダムに12問を出題</span>
         </button>
-        <button class="mode-btn" data-mode="quick">
-          <span class="mode-title">サクッと5問演習</span>
-          <span class="mode-sub">全12問の中からランダムに5問をピックアップ</span>
-        </button>
+
         <button id="weak-mode-btn" class="mode-btn weak-btn" data-mode="weak">
-          <span class="mode-title">苦手問題を復習する（<span id="weak-count">0</span>問）</span>
+          <span class="mode-title">🔥 苦手問題を復習する（<span id="weak-count">0</span>問）</span>
           <span class="mode-sub">過去に間違えた問題だけを集中演習</span>
+        </button>
+      </div>
+
+      <h3 class="section-label">試験回別に解く（各12問）</h3>
+      <div class="exam-grid">
+        <button class="mode-btn compact" data-mode="r08-06-a">
+          <span class="mode-title">令和8年6月期【A】</span>
+          <span class="mode-sub">JY86A（12問）</span>
+        </button>
+        <button class="mode-btn compact" data-mode="r08-06-b">
+          <span class="mode-title">令和8年6月期【B】</span>
+          <span class="mode-sub">JY86B（12問）</span>
+        </button>
+        <button class="mode-btn compact" data-mode="r08-02-a">
+          <span class="mode-title">令和8年2月期【A】</span>
+          <span class="mode-sub">JY82A（12問）</span>
+        </button>
+        <button class="mode-btn compact" data-mode="r08-02-b">
+          <span class="mode-title">令和8年2月期【B】</span>
+          <span class="mode-sub">JY82B（12問）</span>
+        </button>
+        <button class="mode-btn compact" data-mode="r07-10-a">
+          <span class="mode-title">令和7年10月期【A】</span>
+          <span class="mode-sub">JY70A（12問）</span>
+        </button>
+        <button class="mode-btn compact" data-mode="r07-10-b">
+          <span class="mode-title">令和7年10月期【B】</span>
+          <span class="mode-sub">JY70B（12問）</span>
+        </button>
+        <button class="mode-btn compact" data-mode="r07-06-a">
+          <span class="mode-title">令和7年6月期【A】</span>
+          <span class="mode-sub">JY76A（12問）</span>
+        </button>
+        <button class="mode-btn compact" data-mode="r07-06-b">
+          <span class="mode-title">令和7年6月期【B】</span>
+          <span class="mode-sub">JY76B（12問）</span>
+        </button>
+      </div>
+
+      <div class="shortcut-hint">
+        💡 PC操作ヒント：キーボードの <code>1</code>〜<code>4</code> で回答、<code>Enter</code> で次へ進めます
+      </div>
+    </section>
+
+    <!-- クイズ画面 -->
+    <section id="quiz-screen" class="card hidden">
+      <div class="quiz-meta">
+        <span id="topic-tag" class="tag">総則・免許</span>
+        <span id="progress-text">第 1 問 / 全 12 問</span>
+      </div>
+
+      <div class="progress-bar-bg">
+        <div id="progress-bar-fill" class="progress-bar-fill"></div>
+      </div>
+
+      <h2 id="question-text" class="question-text">問題文がここに表示されます</h2>
+
+      <div id="choices-container" class="choices-container"></div>
+
+      <!-- 解説エリア -->
+      <div id="explanation-box" class="explanation-box hidden">
+        <div id="judge-banner" class="judge-banner">正解！</div>
+        <p id="explanation-text" class="explanation-text"></p>
+        <button id="next-btn" class="primary-btn">次の問題へ →</button>
+      </div>
+    </section>
+
+    <!-- 結果画面 -->
+    <section id="result-screen" class="card hidden">
+      <h2>演習結果レポート</h2>
+      <div class="score-circle">
+        <span id="score-percent">83%</span>
+        <span id="score-detail">10 / 12 問正解</span>
+      </div>
+
+      <div id="pass-judge" class="pass-judge">合格ライン突破！（基準：8問以上正解）</div>
+      <p id="result-comment" class="result-comment"></p>
+
+      <div class="result-actions">
+        <button id="retry-btn" class="primary-btn">同じモードでもう一度</button>
+        <button id="home-btn" class="secondary-btn">モード選択に戻る</button>
+      </div>
+    </section>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>一陸特 法規マスタードリル | 全96問収録</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <header class="app-header">
+      <div class="badge">国家資格 対策Webアプリ（過去問 全96問収録）</div>
+      <h1>一陸特 法規マスタードリル</h1>
+      <p>第一級陸上特殊無線技士「法規」過去問演習（R07.06〜R08.06）</p>
+    </header>
+
+    <!-- スタート画面（モード選択） -->
+    <section id="start-screen" class="card">
+      <h2>演習モードを選択</h2>
+      <p class="desc">本試験の法規と同じ合格基準（12問中8問以上正解）で判定します。</p>
+
+      <div class="mode-grid">
+        <button class="mode-btn highlight-btn" data-mode="random12">
+          <span class="mode-title">🎯 ランダム模擬試験（全96問から12問）</span>
+          <span class="mode-sub">過去4回分（全96問）からランダムに12問を出題</span>
+        </button>
+
+        <button id="weak-mode-btn" class="mode-btn weak-btn" data-mode="weak">
+          <span class="mode-title">🔥 苦手問題を復習する（<span id="weak-count">0</span>問）</span>
+          <span class="mode-sub">過去に間違えた問題だけを集中演習</span>
+        </button>
+      </div>
+
+      <h3 class="section-label">試験回別に解く（各12問）</h3>
+      <div class="exam-grid">
+        <button class="mode-btn compact" data-mode="r08-06-a">
+          <span class="mode-title">令和8年6月期【A】</span>
+          <span class="mode-sub">JY86A（12問）</span>
+        </button>
+        <button class="mode-btn compact" data-mode="r08-06-b">
+          <span class="mode-title">令和8年6月期【B】</span>
+          <span class="mode-sub">JY86B（12問）</span>
+        </button>
+        <button class="mode-btn compact" data-mode="r08-02-a">
+          <span class="mode-title">令和8年2月期【A】</span>
+          <span class="mode-sub">JY82A（12問）</span>
+        </button>
+        <button class="mode-btn compact" data-mode="r08-02-b">
+          <span class="mode-title">令和8年2月期【B】</span>
+          <span class="mode-sub">JY82B（12問）</span>
+        </button>
+        <button class="mode-btn compact" data-mode="r07-10-a">
+          <span class="mode-title">令和7年10月期【A】</span>
+          <span class="mode-sub">JY70A（12問）</span>
+        </button>
+        <button class="mode-btn compact" data-mode="r07-10-b">
+          <span class="mode-title">令和7年10月期【B】</span>
+          <span class="mode-sub">JY70B（12問）</span>
+        </button>
+        <button class="mode-btn compact" data-mode="r07-06-a">
+          <span class="mode-title">令和7年6月期【A】</span>
+          <span class="mode-sub">JY76A（12問）</span>
+        </button>
+        <button class="mode-btn compact" data-mode="r07-06-b">
+          <span class="mode-title">令和7年6月期【B】</span>
+          <span class="mode-sub">JY76B（12問）</span>
         </button>
       </div>
 
